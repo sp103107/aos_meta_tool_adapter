@@ -1,0 +1,29 @@
+# Minimal CI: install, wheel build, pytest.
+# Documented in repo README; aligns with workspace docs/PUBLISH_READINESS_AUDIT.md.
+
+name: ci
+
+on:
+  push:
+    branches: [main, master]
+  pull_request:
+    branches: [main, master]
+
+jobs:
+  build-test:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+      - name: Install tooling
+        run: |
+          python -m pip install --upgrade pip
+          python -m pip install build pytest
+      - name: Install project
+        run: python -m pip install -e .
+      - name: Build wheel
+        run: python -m build --wheel
+      - name: Run tests
+        run: pytest -q
