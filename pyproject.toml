@@ -1,0 +1,52 @@
+[build-system]
+requires = ["setuptools>=68", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "aos-meta-tool-adapter"
+version = "1.1.0"
+description = "AoS Meta Tool Adapter with generic registry-first bindings and canonical envelope adaptation: publish-ready tool registry, runtime binding, chain execution, and license-propagating emits."
+readme = "README.md"
+requires-python = ">=3.10"
+license = { file = "LICENSE" }
+authors = [
+  { name = "Stephen V. Palazzo / Action Operations Schema (AoS)" }
+]
+keywords = ["aos", "tool adapter", "registry", "wheel", "contracts", "meta adapter"]
+classifiers = [
+  "Development Status :: 4 - Beta",
+  "Intended Audience :: Developers",
+  "License :: Other/Proprietary",
+  "Programming Language :: Python :: 3",
+  "Programming Language :: Python :: 3 :: Only",
+  "Programming Language :: Python :: 3.10",
+  "Programming Language :: Python :: 3.11",
+  "Programming Language :: Python :: 3.12",
+  "Topic :: Software Development :: Libraries :: Python Modules"
+]
+dependencies = []
+
+[project.urls]
+Homepage = "https://github.com/sp103107/aos_meta_tool_adapter"
+Repository = "https://github.com/sp103107/aos_meta_tool_adapter.git"
+
+[project.scripts]
+aos-tools = "aos_meta_tool_adapter.cli:main"
+
+[tool.setuptools]
+package-dir = {"" = "src"}
+include-package-data = true
+license-files = ["LICENSE", "NOTICE"]
+
+[tool.setuptools.packages.find]
+where = ["src"]
+
+[tool.setuptools.package-data]
+aos_meta_tool_adapter = [
+  "resources/reference/*",
+  "resources/jsonl/master/*.jsonl",
+  "resources/jsonl/split/*.jsonl",
+  "resources/registry/*.jsonl",
+  "LICENSE",
+  "NOTICE"
+]

@@ -1,0 +1,5 @@
+AoS Meta Tool Adapter v1.0.0
+Copyright (c) 2026 OpenAI
+
+This distribution includes embedded reference-pack metadata and generated registry
+artifacts used for offline validation and tool orchestration.

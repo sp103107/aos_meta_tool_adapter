@@ -1,0 +1,42 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://aos.dev/contract_pack/v1/schema_record_line.json",
+  "title": "app_tool_schema_inventory line",
+  "description": "One line of app_tool_schema_inventory.v1.jsonl (contract pack reference).",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "artifact_family",
+    "output_family",
+    "record_type",
+    "relative_path",
+    "schema_id",
+    "version"
+  ],
+  "properties": {
+    "artifact_family": {
+      "type": "string",
+      "description": "Sorcer incoming basename segment: {checkpoint_id}_{artifact_family}.json"
+    },
+    "output_family": {
+      "type": "string",
+      "const": "app_tool"
+    },
+    "record_type": {
+      "type": "string",
+      "const": "schema_record"
+    },
+    "relative_path": {
+      "type": "string",
+      "description": "Path under the inner standard pack root to the JSON Schema file"
+    },
+    "schema_id": {
+      "type": "string",
+      "description": "Canonical $id URI for the app_tool instance schema"
+    },
+    "version": {
+      "type": "string",
+      "pattern": "^\\d+\\.\\d+\\.\\d+$"
+    }
+  }
+}

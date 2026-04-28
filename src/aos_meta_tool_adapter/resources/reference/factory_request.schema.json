@@ -1,0 +1,106 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://aos.dev/contract_pack/v1/factory_request.json",
+  "title": "aos_pack_factory request (contract pack)",
+  "description": "Shape validated by aos_pack_factory.request_validator after normalize_request. Extra generation_scope keys are ignored by the factory if present.",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "request_id",
+    "request_name",
+    "target_module",
+    "generation_scope",
+    "contract_families",
+    "output_modes",
+    "constraints"
+  ],
+  "properties": {
+    "request_id": {
+      "type": "string",
+      "minLength": 1
+    },
+    "request_name": {
+      "type": "string",
+      "minLength": 1
+    },
+    "target_module": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["module_name", "module_purpose", "module_class"],
+      "properties": {
+        "module_name": { "type": "string", "minLength": 1 },
+        "module_purpose": { "type": "string", "minLength": 1 },
+        "module_class": {
+          "type": "string",
+          "enum": [
+            "service",
+            "tool",
+            "factory",
+            "adapter",
+            "runtime_module",
+            "ui_module",
+            "data_module"
+          ]
+        }
+      }
+    },
+    "contract_families": {
+      "type": "array",
+      "minItems": 1,
+      "items": {
+        "type": "string",
+        "enum": [
+          "request",
+          "plan",
+          "schema_manifest",
+          "module_contract",
+          "backend_surface",
+          "frontend_surface",
+          "db_surface",
+          "runtime_surface",
+          "deploy_surface",
+          "validation_report"
+        ]
+      }
+    },
+    "generation_scope": {
+      "type": "object",
+      "description": "At least one of generate_unfilled, generate_annotated, generate_filled_examples must be true (factory validator).",
+      "properties": {
+        "generate_unfilled": { "type": "boolean" },
+        "generate_annotated": { "type": "boolean" },
+        "generate_filled_examples": { "type": "boolean" },
+        "generate_backend_contracts": { "type": "boolean" },
+        "generate_frontend_contracts": { "type": "boolean" },
+        "generate_db_contracts": { "type": "boolean" },
+        "generate_runtime_contracts": { "type": "boolean" },
+        "generate_deploy_contracts": { "type": "boolean" }
+      }
+    },
+    "output_modes": {
+      "type": "object",
+      "description": "At least one mode must be true (factory validator).",
+      "required": ["emit_json", "emit_markdown", "emit_repo_files"],
+      "properties": {
+        "emit_json": { "type": "boolean" },
+        "emit_markdown": { "type": "boolean" },
+        "emit_repo_files": { "type": "boolean" },
+        "emit_cursor_blocks": { "type": "boolean" }
+      }
+    },
+    "constraints": {
+      "type": "object",
+      "required": ["schema_first", "deterministic_ordering_required"],
+      "properties": {
+        "schema_first": { "type": "boolean", "const": true },
+        "deterministic_ordering_required": { "type": "boolean", "const": true },
+        "strict_naming_required": { "type": "boolean" },
+        "no_speculative_families": { "type": "boolean" }
+      }
+    },
+    "notes": {
+      "type": "array",
+      "items": { "type": "string" }
+    }
+  }
+}

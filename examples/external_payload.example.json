@@ -1,0 +1,9 @@
+{
+  "request_id": "req_ext_001",
+  "source_system": "vendor_demo",
+  "input_payload": {
+    "input": "./split.zip",
+    "out": "./out"
+  },
+  "attachments": []
+}

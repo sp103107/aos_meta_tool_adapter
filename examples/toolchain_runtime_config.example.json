@@ -1,0 +1,17 @@
+{
+  "version": "1.0.0",
+  "license_propagation": true,
+  "default_mode": "deterministic",
+  "tool_overrides": {
+    "atomizer": {
+      "binding_type": "local_path",
+      "local_path": "./atomizer"
+    },
+    "shredder": {
+      "allow_stub": true
+    },
+    "rag_molecule_db_generator": {
+      "allow_stub": true
+    }
+  }
+}
